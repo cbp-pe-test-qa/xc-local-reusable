@@ -1,0 +1,19 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: auto-pe-xc-local-reusable
+on:
+  workflow_call:
+jobs:
+  rw-job:
+    steps:
+      - name: rw-job
+        uses: docker://alpine:3.20
+        shell: sh
+        run: echo "rw-job"
+  rw-post:
+    needs: rw-job
+    steps:
+      - name: rw-post
+        uses: docker://alpine:3.20
+        shell: sh
+        run: echo "rw-post"
